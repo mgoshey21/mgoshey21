@@ -1,0 +1,114 @@
+body
+{
+    display: flex; 
+    background-color: lightgrey;
+}
+
+header
+{
+    background-image: url("http://getwallpapers.com/wallpaper/full/0/4/4/574518.jpg");
+    color:silver;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 100px;
+    text-align: center;
+    font-size: 20;
+}
+
+#zen-summary
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#zen-preamble
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#zen-explanation
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#zen-participation
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#zen-benefits
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#zen-requirements
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+
+
+#design-selection
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#design-archives
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#zen-resources
+{
+    background-color: rgb(184, 193, 234);
+    color: black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px; 
+}
+
+a
+{
+    color: black;
+}
+
+a:hover
+{
+    color: silver;
+}
+
+
+
+
+
