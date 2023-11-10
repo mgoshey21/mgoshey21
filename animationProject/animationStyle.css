@@ -3,21 +3,13 @@ body
     background-image: url("http://clipart-library.com/img/1205949.png");
     
 }
-
-#container 
-{
-    width: 400px;
-    height: 400px;
-    position: relative;
-    
-}
  
 #plane 
 {
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 50%;
+    top: 25%;
     
 }
 
@@ -26,6 +18,15 @@ body
     width: 100px;
     height: 100px;
     position: absolute;
-    top:75%;
+    top:50%;
     right: 10px;
+}
+
+#birds
+{
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    top:75%;
+
 }

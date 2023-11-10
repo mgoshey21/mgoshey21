@@ -22,14 +22,16 @@
     </head>
     
     <body>
-        <h2> Air Traffic </h2>
+        <h2> Click to move </h2>
         
         <img src="http://clipart-library.com/images_k/airplane-clipart-transparent/airplane-clipart-transparent-14.png" alt="airplane" id="plane">
         <img src="https://webstockreview.net/images/helicopter-clipart-red-helicopter-5.png" alt="helicopter" id="helicopter">
+        <img src="https://tellthebirds.com/wp-content/uploads/2017/09/Flying_Birds_Silhouettes_Transparent_PNG_Clip_Art_Image.png" alt="Birds" id="birds">
 
 
-<p><button onclick="airplane()">Fly the Plane</button></p> 
-<p><button onclick="helicopterFlght()">Fly the Helicopter</button></p>
+<p><button onclick="airplane()">Plane</button></p> 
+<p><button onclick="helicopterFlght()">Helicopter</button></p>
+<p><button onclick="birds()">Birds</button></p>
 
 <div id ="container">
   <div id ="animate"></div>
@@ -70,7 +72,22 @@ function helicopterFlght() {
   }
 }
 
-
+function birds() {
+  let id = null;
+  const bird = document.getElementById("birds");   
+  let pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 1200) {
+      clearInterval(id);
+    } 
+    else {
+      pos++;  
+      bird.style.left = pos + "px"; 
+    }
+  }
+}
 
 
 </script>
