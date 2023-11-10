@@ -1,0 +1,83 @@
+
+<!--
+
+    Idea: planes taking off of runway
+
+    TODO:
+        find plane car art
+        find background
+
+        do code for planes animation
+        add buttons       
+
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="animationStyle.css" />
+        <link rel="jsAnimation" type="text/js" href="animation.js"/>
+    </head>
+    
+    <body>
+        <h2> Air Traffic </h2>
+        
+        <img src="http://clipart-library.com/images_k/airplane-clipart-transparent/airplane-clipart-transparent-14.png" alt="airplane" id="plane">
+        <img src="https://webstockreview.net/images/helicopter-clipart-red-helicopter-5.png" alt="helicopter" id="helicopter">
+
+
+<p><button onclick="airplane()">Fly the Plane</button></p> 
+<p><button onclick="helicopterFlght()">Fly the Helicopter</button></p>
+
+<div id ="container">
+  <div id ="animate"></div>
+</div>
+
+<script>
+function airplane() {
+  let id = null;
+  const airplane = document.getElementById("plane");
+  const firstCloud = document.getElementById("cloudOne");   
+  let pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 1425) {
+      clearInterval(id);
+    } else {
+      pos++;  
+      airplane.style.left = pos + "px"; 
+    }
+  }
+}
+
+function helicopterFlght() {
+  let id = null;
+  const helicopter = document.getElementById("helicopter");   
+  let pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 1420) {
+      clearInterval(id);
+    } 
+    else {
+      pos++;  
+      helicopter.style.right = pos + "px"; 
+    }
+  }
+}
+
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+</html>
