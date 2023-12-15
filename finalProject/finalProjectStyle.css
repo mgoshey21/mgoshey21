@@ -1,0 +1,12 @@
+#loginBox
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25%;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: lightgray;
+    text-align: center;
+}

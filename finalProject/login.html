@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>CSIS 304 Final Project</title>
+<link rel="stylesheet" type="text/css" href="finalProjectStyle.css" />
+</head>
+
+<body>
+    <div id="loginBox">
+        <h1>Log In</h1>
+        <form id="login">
+            <label for="username">User Name: </label>
+            <input type="text" name="username" id="username" />
+            <br />
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" />
+            <br />
+            <button type="submit">Log In</button>
+        </form>
+        <div id="loginMessage"></div>
+        <div id="currentUser"></div>
+        <button id="logout">Log Out</button>
+    </div>
+
+<script type="text/javascript">
+const api = 'http://web.cs.georgefox.edu:8080/';
+
+
+async function getUserInfo() 
+{
+    let token = localStorage.getItem("token");
+    if (token) 
+    {
+        document.getElementById('login').style.display = 'none';
+        let response = await fetch(api + 'users/me', 
+        {
+            'headers': 
+            {
+	            'Authorization': 'Bearer ' + token
+	 
+            }
+        });
+
+        let data = await response.json();
+        console.log(data);
+  
+        document.getElementById('currentUser').innerHTML = `<a href="blog.html">User: ${data.username}</a>`;
+  
+    } 
+    else 
+    {
+        document.getElementById("content").innerHTML = "Not Logged In";
+    }
+}
+
+
+document.getElementById("login").addEventListener("submit", (event) => 
+{
+  event.preventDefault();
+  //create the content to send, using encodeURIComponent
+  var formBody = [
+  'username='+encodeURIComponent(document.getElementById('username').value), 
+  'password='+encodeURIComponent(document.getElementById('password').value)
+  ];
+  formBody = formBody.join("&");
+  //send POST request
+  fetch(api + 'token', 
+  {
+    method: "POST",
+    headers: { 
+        "Content-Type": "application/x-www-form-urlencoded"
+	},
+	body: formBody
+  }).then(response => {
+    //check status of response, 200 means success
+    if (response.status !== 200) 
+    {
+	 	throw new Error('Log in error');
+	}
+    return response.json();}
+  ).then(data => {
+    //this is the parsed json response, save the token and display message
+    console.log(data); 
+	 document.getElementById("loginMessage").innerHTML = 'Logged In';
+	 localStorage.setItem("token", data.access_token);
+	 loadUserInfo();
+  })
+  .catch(e => {
+    //catch on fetch - catch a non-200 or any other error
+    console.log(e);
+    document.getElementById('loginMessage').innerHTML = e.message;
+  });
+});
+
+//on log out - remove token and refresh page
+document.getElementById('logout').addEventListener('click', () => {
+localStorage.removeItem('token');
+window.location.reload();
+});
+
+//on page load, load content
+loadUserInfo();
+
+</script>
+</body>
