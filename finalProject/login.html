@@ -21,40 +21,35 @@
         <button id="logout">Log Out</button>
     </div>
 
+
 <script type="text/javascript">
-const api = 'http://web.cs.georgefox.edu:8080/';
+const apiUrl = 'http://web.cs.georgefox.edu:8080/';
 
 
-async function getUserInfo() 
-{
-    let token = localStorage.getItem("token");
-    if (token) 
-    {
-        document.getElementById('login').style.display = 'none';
-        let response = await fetch(api + 'users/me', 
-        {
-            'headers': 
-            {
-	            'Authorization': 'Bearer ' + token
-	 
-            }
-        });
-
-        let data = await response.json();
-        console.log(data);
+async function loadUserInfo() {
+let token  = localStorage.getItem("token");
+if (token) {
+  //hide log in form, since they are in
+  document.getElementById('login').style.display = 'none';
+  //get current user
+  let response = await fetch(apiUrl + 'users/me', {
+    'headers': {
+	   'Authorization': 'Bearer ' + token
+	 }
+  });
+  let data = await response.json();
+  console.log(data);
+  //put the current user name with link to blog page
+  document.getElementById('currentUser').innerHTML = `<a href="blog.html">User: ${data.username}</a>`;
   
-        document.getElementById('currentUser').innerHTML = `<a href="blog.html">User: ${data.username}</a>`;
-  
-    } 
-    else 
-    {
-        document.getElementById("content").innerHTML = "Not Logged In";
-    }
+} else {
+  document.getElementById("content").innerHTML = "Not Logged In";
+}
 }
 
-
-document.getElementById("login").addEventListener("submit", (event) => 
-{
+//log in form listener - gets the token from the api
+document.getElementById("login").addEventListener("submit", (event) => {
+  //prevent from reloading page, want to send on ajax
   event.preventDefault();
   //create the content to send, using encodeURIComponent
   var formBody = [
@@ -63,19 +58,17 @@ document.getElementById("login").addEventListener("submit", (event) =>
   ];
   formBody = formBody.join("&");
   //send POST request
-  fetch(api + 'token', 
-  {
+  fetch(apiUrl + 'token', {
     method: "POST",
-    headers: { 
-        "Content-Type": "application/x-www-form-urlencoded"
-	},
-	body: formBody
+    headers: {
+	   "Content-Type": "application/x-www-form-urlencoded"
+	 },
+	 body: formBody
   }).then(response => {
     //check status of response, 200 means success
-    if (response.status !== 200) 
-    {
-	 	throw new Error('Log in error');
-	}
+    if (response.status !== 200) {
+	 	throw new Error('Error logging in');
+	 }
     return response.json();}
   ).then(data => {
     //this is the parsed json response, save the token and display message

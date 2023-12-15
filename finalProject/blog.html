@@ -1,0 +1,37 @@
+<body>
+    <div id="posts">
+        <h1>Posts: </h1>
+        
+        
+    </div>
+
+
+<script type="text/javascript">
+const url = 'http://web.cs.georgefox.edu:8080/';
+async function getPost() {
+    
+    let response = await fetch(url +"oscar/posts/");
+    
+    // Verify response code is 2XX
+    if (response.ok) {
+       let post = await response.json();
+    
+       let html = "";
+       if (post.success) {           
+          html += "<h1>Posts:" + "</h1>";
+       } 
+       else {
+          html = "<h1>Error: " + post.error + "</h1>";
+       }
+       
+       // Show forecast
+       document.getElementById("forecast").innerHTML = html;
+    }
+    else {
+       alert("HTTP error: " + response.status);
+    }   
+ }
+ 
+ document.getElementById("search").addEventListener("click", getPosts);
+ </script>
+ </body>
